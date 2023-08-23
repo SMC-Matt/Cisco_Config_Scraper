@@ -7,14 +7,14 @@ import datetime
 backup_filename = str('Switch-Config-Backup-' + '{0:%Y-%m-%d-%H-%M-%S}'.format(datetime.datetime.now()) + '.cfg')
 
 # Set the directory for the backup to be stored
-backup_dir = str(r'C:\Users\Matt R\OneDrive - S M Contracts Ltd\Documents\SwitchBackups')
+backup_dir = str('Backup_Location')
 
 # Set the IP address, username, and password for the switch
 switchDevice ={
             'device_type': 'cisco_ios',                                                 # Provide Switch OS
-            'host': '192.168.110.30',                                                   # Provide Switch IP
-            'username': 'smcoffice',                                                    # Provide Switch username
-            'password': 'EVxz")W{U7Me+s*T!',                                            # Provide Switch password
+            'host': 'IP_Address',                                                       # Provide Switch IP
+            'username': 'Username',                                                     # Provide Switch username
+            'password': 'Password',                                                     # Provide Switch password
 }
 
 # SSH to the switch and output the running config to a variable
