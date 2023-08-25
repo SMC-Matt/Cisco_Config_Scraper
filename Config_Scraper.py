@@ -7,20 +7,23 @@ import datetime
 backup_filename = str('Switch-Config-Backup-' + '{0:%Y-%m-%d-%H-%M-%S}'.format(datetime.datetime.now()) + '.cfg')
 
 # Set the directory for the backup to be stored
-backup_dir = str(r'C:\Users\Matt R\OneDrive - S M Contracts Ltd\Documents\SwitchBackups')
+backup_dir = str(UDF_1)
+
+# Creates what the script will expect back from the CLI
+hostname = str(UDF_2 + "#")
 
 # Set the IP address, username, and password for the switch
 switchDevice ={
             'device_type': 'cisco_ios',                                                 # Provide Switch OS
-            'host': '192.168.110.30',                                                       # Provide Switch IP
-            'username': 'smcoffice',                                                     # Provide Switch username
-            'password': 'EVxz")W{U7Me+s*T!',                                                     # Provide Switch password
+            'host': UDF_3,                                                   # Provide Switch IP
+            'username': UDF_4,                                                    # Provide Switch username
+            'password': UDF_5,                                            # Provide Switch password
 }
 
 # SSH to the switch and output the running config to a variable
 ssh = ConnectHandler(**switchDevice)                                                    # Create a new SSH client
-ssh.send_command("terminal datadump", expect_string="SW-RBA#")                          # Output show commands in one go
-output_run_config = ssh.send_command("show running-config", expect_string="SW-RBA#")    # Output running config to variable
+ssh.send_command("terminal datadump", expect_string=hostname)                          # Output show commands in one go
+output_run_config = ssh.send_command("show running-config", expect_string=hostname)    # Output running config to variable
 ssh.disconnect                                                                          # Close SSH session
 
 # Open file and output switch config to the file
